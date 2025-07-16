@@ -3,6 +3,7 @@
 #include "openai_rt_sdk_stub.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "sleep_mgr.h"
 
 #define TAG "OPENAI_RT"
 
@@ -19,10 +20,12 @@ static void conversation_task(void* pv) {
         vTaskDelete(NULL);
         return;
     }
+    sleep_mgr_reset_timer(); // cancel sleep while talking
     openai_rt_start(handle);
     // ここでは単に10秒待って停止するデモ
     vTaskDelay(pdMS_TO_TICKS(10000));
     openai_rt_stop(handle);
+    sleep_mgr_reset_timer();
     ESP_LOGI(TAG, "Conversation finished");
     s_task = NULL;
     vTaskDelete(NULL);

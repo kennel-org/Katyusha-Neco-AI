@@ -7,6 +7,7 @@
 #define BUTTON_GPIO GPIO_NUM_0  // AtomS3のボタンはGPIO0
 #define TAG "MAIN"
 #include "openai_rt.h"
+#include "sleep_mgr.h"
 
 
 
@@ -34,5 +35,6 @@ void button_task(void *pvParameter) {
 }
 
 void app_main(void) {
+    sleep_mgr_init(60);  // default 60s
     xTaskCreate(&button_task, "button_task", 2048, NULL, 5, NULL);
 }
