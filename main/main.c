@@ -6,10 +6,9 @@
 
 #define BUTTON_GPIO GPIO_NUM_0  // AtomS3のボタンはGPIO0
 #define TAG "MAIN"
+#include "openai_rt.h"
 
-static void ai_conversation_start_stub() {
-    ESP_LOGI(TAG, "AI音声会話を起動（stub）");
-}
+
 
 void button_task(void *pvParameter) {
     gpio_config_t io_conf = {
@@ -26,7 +25,7 @@ void button_task(void *pvParameter) {
         int level = gpio_get_level(BUTTON_GPIO);
         if (last_level == 1 && level == 0) {
             // 短押し検出
-            ai_conversation_start_stub();
+            openai_rt_start_conversation();
             vTaskDelay(pdMS_TO_TICKS(300)); // チャタリング防止
         }
         last_level = level;
