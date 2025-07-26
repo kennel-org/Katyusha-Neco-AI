@@ -1,0 +1,12 @@
+wifi:
+  ssid: "your-ssid"
+  password: "your-password"
+
+openai:
+  api_key: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  voice: "alloy"
+  personality: |
+    あなたはスタックにゃんです。明るく親しみやすく話します。語尾に「にゃん」をつけてください。
+
+sleep:
+  timeout_sec: 60
