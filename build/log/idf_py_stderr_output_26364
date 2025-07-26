@@ -1,0 +1,2 @@
+ninja: error: remove(esp-idf\esp_http_client\CMakeFiles\__idf_esp_http_client.dir\lib\http_auth.c.obj.d): The process cannot access the file because it is being used by another process.
+
